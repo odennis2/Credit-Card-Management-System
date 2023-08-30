@@ -1,0 +1,86 @@
+<body>
+  <app-dialog [title]="dialogTitle" [message]="dialogMessage"></app-dialog>
+
+  <form #creditcardForm="ngForm" class="form-group" id="creditcard" (ngSubmit)="addCreditCard()">
+    <label class="label" for="ccard_number">Card number: </label>
+    <input class="input" required 
+           type="number" 
+           id="ccard_number" 
+           name="ccard_number" 
+           [(ngModel)]="newCardInfo.card_number" 
+           #ccard_number="ngModel"
+           [ngModelOptions]="{ updateOn: 'blur' }"
+           pattern=".{7,16}"
+           placeholder="">
+    <div class="error-group" *ngIf="ccard_number.invalid && (ccard_number.dirty || ccard_number.touched)">
+      <div *ngIf="ccard_number.errors?.['required']">Card number is required.</div>
+      <div *ngIf="ccard_number.errors?.['pattern']">Card number length must be between 7 and 16 digits.</div>
+    </div><br><br>
+
+    <label class="label" for="csc_code">Csc code: </label>
+    <input class="input" required 
+           type="number" 
+           id="csc_code" 
+           name="csc_code" 
+           [(ngModel)]="newCardInfo.csc_code"
+           #csc_code="ngModel"
+           [ngModelOptions]="{ updateOn: 'blur' }"
+           pattern=".{3,3}">
+    <div class="error-group" *ngIf="csc_code.invalid && (csc_code.dirty || csc_code.touched)">
+      <a *ngIf="csc_code.errors?.['required']">Csc code is required.</a>
+      <a *ngIf="csc_code.errors?.['pattern']">Csc_code length must be 3 digits.</a>
+    </div><br><br>
+
+    <label class="label" for="ccard_name">Card holder's name: </label>
+    <input class="input" required 
+           type="text" 
+           id="ccard_name" 
+           name="ccard_name" 
+           [(ngModel)]="newCardInfo.cardholder_name"
+           #ccard_name="ngModel"
+           [ngModelOptions]="{ updateOn: 'blur' }">
+    <div class="error-group" *ngIf="ccard_name.invalid && (ccard_name.dirty || ccard_name.touched)">
+      <div *ngIf="ccard_name.errors?.['required']">Card holder's name is required.</div>
+    </div><br><br>
+
+    <label class="label" for="exp_month">Expiration month: </label>
+    <input class="input" required 
+           type="number" 
+           id="exp_month" 
+           name="exp_month" 
+           [(ngModel)]="newCardInfo.expiration_date_month"
+           #exp_month="ngModel"
+           [ngModelOptions]="{ updateOn: 'blur' }"
+           [min]="1" [max]="12">
+    <div class="error-group" *ngIf="exp_month.invalid && (exp_month.dirty || exp_month.touched)">
+      <div *ngIf="exp_month.errors?.['required']">Expiration month is required.</div>
+      <div *ngIf="exp_month.errors?.['min'] || exp_month.errors?.['max']">Expiration month must be between 1-12.</div>
+    </div><br><br>
+
+    <label class="label" for="exp_year">Expiration year: </label>
+    <input class="input" required 
+           type="number" 
+           id="exp_year" 
+           name="exp_year" 
+           [(ngModel)]="newCardInfo.expiration_date_year"
+           #exp_year="ngModel"
+           [ngModelOptions]="{ updateOn: 'blur' }">
+    <div class="error-group" *ngIf="exp_year.invalid && (exp_year.dirty || exp_year.touched)">
+      <div *ngIf="exp_year.errors?.['required']">Expiration year is required.</div>
+    </div><br><br>
+
+    <label class="label" for="issuer">Issuer: </label>
+    <input class="input" required 
+           type="text" 
+           id="issuer" 
+           name="issuer" 
+           [(ngModel)]="newCardInfo.issuer"
+           #issuer="ngModel"
+           [ngModelOptions]="{ updateOn: 'blur' }">
+    <div class="error-group" *ngIf="issuer.invalid && (issuer.dirty || issuer.touched)">
+      <div *ngIf="issuer.errors?.['required']">Issuer is required.</div>
+    </div><br><br>
+
+    <button *ngIf="creditcardForm.valid" type="submit" class="form-button">Submit</button>
+  </form>
+</body>

@@ -1,0 +1,36 @@
+<body>
+  <app-dialog [title]="dialogTitle" [message]="dialogMessage"></app-dialog>
+  
+  <form class="form-group" id="transaction" (ngSubmit)="addTransaction()">
+    <label for="ccard">Credit card:</label>
+    <select id="ccard" name="ccard" [(ngModel)]="newTransaction.credit_card">
+      <option *ngFor="let transaction of transactionList" [ngValue]="transaction.credit_card">{{ transaction.credit_card.card_number }}</option>
+    </select><br><br>
+    <label for="amount">Amount:</label>
+    <input required type="number" id="amount" name="amount" [(ngModel)]="newTransaction.amount"><br><br>
+    <label for="comment">Comment: </label>
+    <input required type="text" id="comment" name="comment" [(ngModel)]="newTransaction.comment"><br><br>
+    <select required class="form-select" id="currency" name="currency" [(ngModel)]="newTransaction.currency">
+      <option value="">Currency</option>
+      <option value="DKK">Danish Krone</option>
+      <option value="EUR">Euro</option>
+      <option value="USD">US Dollar</option>
+    </select><br><br>
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" [(ngModel)]="newTransaction.date" required><br><br>
+    <button type="submit" class="form-button">Submit</button>
+  </form>
+  
+  <div class="product-list">
+    <button class="button" (click)="filterTransactions()">Filter transactions</button>
+    <div class="product-box" *ngFor="let transaction of transactionList">
+        <div>Card number: {{ transaction.credit_card.card_number }}</div>
+        <div>Amount: {{ transaction.amount }}</div>
+        <div>Currency: {{ transaction.currency }}</div>
+        <div>Comment: {{ transaction.comment }}</div>
+        <div>Date: {{ formatTimestampToDate(transaction.date) }}</div>
+        <button class="button" (click)="removeTransaction(transaction.uid)">Remove</button>
+    </div>
+  </div>
+</body>
+  

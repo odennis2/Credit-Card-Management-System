@@ -1,0 +1,37 @@
+.product-box {
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .product-box:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .transaction-list {
+    margin-top: 5px;
+  }
+  
+  .transaction-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .transaction-list li {
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+
+.button {
+    margin-top: 10px;
+}
+.button:hover {
+    background-color: #c7c7c7;
+}
+  

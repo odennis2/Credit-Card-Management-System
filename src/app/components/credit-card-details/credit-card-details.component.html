@@ -1,0 +1,20 @@
+<app-dialog [title]="dialogTitle" [message]="dialogMessage"></app-dialog>
+<div *ngIf="selectedCard" class="card-details">
+  <div class="product-box" [ngStyle]="{'box-shadow': '0 2px 4px rgba(0, 0, 0, 0.1)', 'cursor': 'pointer'}">
+    <div><strong>Card Number:</strong> {{ selectedCard.card_number }}</div>
+    <div><strong>Cardholder Name:</strong> {{ selectedCard.cardholder_name }}</div><br>
+    <div><strong>CSC Code:</strong> {{ selectedCard.csc_code }}</div>
+    <div><strong>Issuer:</strong> {{ selectedCard.issuer }}</div>
+    <div><strong>Expiration Date:</strong> {{ selectedCard | expirationDate }}</div>
+    <button class="button" (click)="removeCard(selectedCard.card_number)">Remove</button>
+  </div>
+  <div class="transaction-list">
+    <h2>Transactions</h2>
+    <ul>
+      <li *ngFor="let transaction of filteredTransactions">
+        {{ transaction.amount }} {{ transaction.currency }} - {{ formatTimestampToDate(transaction.date) }}
+      </li>
+    </ul>
+  </div>
+</div>
+

@@ -1,0 +1,10 @@
+<app-dialog [title]="dialogTitle" [message]="dialogMessage"></app-dialog>
+<div class="credit-card-list">
+  <div *ngFor="let card of creditCardList" class="product-box">
+    <a [routerLink]="['/credit-card-details', card.card_number]">
+      <div><strong>Card Number:</strong> {{ card.card_number }}</div>
+      <div><strong>Cardholder Name:</strong> {{ card.cardholder_name }}</div>
+      <div><strong>Issuer:</strong> {{ card.issuer }}</div>
+    </a>
+  </div>
+</div>
